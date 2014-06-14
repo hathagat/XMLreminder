@@ -33,3 +33,4 @@ maven-eclipse.xml
 .idea/*
 !.idea/codeStyleSettings.xml
 *.iml
+/bin
