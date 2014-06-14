@@ -25,6 +25,7 @@ nb-actions.xml
 # Eclipse
 .settings/
 .project/
+.project
 .classpath
 .externalToolBuilders/
 maven-eclipse.xml
