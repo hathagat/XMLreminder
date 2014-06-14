@@ -10,3 +10,26 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Maven
+build/
+dist/
+nbproject/
+target/
+dependency-reduced-pom.xml
+
+# Netbeans
+nb-configuration.xml
+nb-actions.xml
+
+# Eclipse
+.settings/
+.project/
+.classpath
+.externalToolBuilders/
+maven-eclipse.xml
+
+# IntelliJ IDEA
+.idea/*
+!.idea/codeStyleSettings.xml
+*.iml
