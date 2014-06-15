@@ -7,9 +7,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// draw window
-		Gui window = new Gui("XML-Reminder");
+		Gui window = new Gui();
 		window.setBounds(100, 100, 800, 600); // xPos, yPos, xSize, ySize
-		window.show();
+		window.setVisible(true);
 
 		// read XML file
 		ReadXml data = new ReadXml();

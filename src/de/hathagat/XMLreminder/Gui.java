@@ -1,6 +1,5 @@
 package de.hathagat.XMLreminder;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -24,11 +23,12 @@ public class Gui extends JFrame {
 	JTextField textField1;
 	JTextField textField2;
 	JButton button1;
-    JTable table;
-    DefaultTableModel tableModel;
+	
+    static String[] titles = new String[]{ "Termin ID", "Titel", "Datum", "Uhrzeit", "Beschreibung" };	// titles for table columns
+    final static DefaultTableModel model = new DefaultTableModel( titles, 0 );
 
-	public Gui(String title) {
-		this.setTitle(title);
+	public Gui() {
+		this.setTitle("XML-Reminder");
 		this.getContentPane().setLayout(null);
 		this.initWindow();
 		this.addWindowListener(new WindowListener() {
@@ -49,7 +49,7 @@ public class Gui extends JFrame {
 			}
 		});
 	}
-
+	
 	protected void initWindow() {
 		tasks();
 		readText();
@@ -66,7 +66,16 @@ public class Gui extends JFrame {
 
 		this.pack();
 	}
+	
+	public void table() {
+		 JTable table = new JTable( model );          
+      JScrollPane scrollPane = new JScrollPane(table);
 
+      scrollPane.setBounds(15, 250, 600, 200);
+      
+      this.getContentPane().add(scrollPane);
+	}
+	
 	public void tasks() {
 		// Options for the JComboBox
 		String[] taskOptions = { "Allgemein", "Feier", "Geburtstag", "Meeting",
@@ -98,7 +107,7 @@ public class Gui extends JFrame {
 		listPanel.add(dayCal);
 
 		comboPanel.setBounds(400, 15, 150, 60);
-		listPanel.setBounds(550, 15, 150, 250);
+		listPanel.setBounds(550, 15, 150, 200);
 
 		this.getContentPane().add(comboPanel);
 		this.getContentPane().add(listPanel);
@@ -143,23 +152,5 @@ public class Gui extends JFrame {
 		} else {
 			textField2.setText("Eingabe ist nicht in Ordnung.");
 		}
-	}
-
-	public void table() {
-	     String columns[] = { "Termin ID", "Titel", "Datum"};   
-	     String content[][] = {
-	               { "1", "bla", "morgen"},
-	               { "2", "blu"},
-	               { "3", "blub", "nie"}
-	     };
-
-	     
-	     tableModel = new DefaultTableModel(content, columns);        
-         table = new JTable(tableModel);
-         
-         JScrollPane scrollPane = new JScrollPane(table);
-         
-         scrollPane.setBounds(15, 250, 500, 250);
-         this.getContentPane().add(scrollPane);
 	}
 }
