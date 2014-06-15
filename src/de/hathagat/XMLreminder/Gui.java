@@ -1,5 +1,6 @@
 package de.hathagat.XMLreminder;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -12,7 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class Gui extends JFrame {
 	private static final long serialVersionUID = 1470518963314635877L;
@@ -20,6 +24,8 @@ public class Gui extends JFrame {
 	JTextField textField1;
 	JTextField textField2;
 	JButton button1;
+    JTable table;
+    DefaultTableModel tableModel;
 
 	public Gui(String title) {
 		this.setTitle(title);
@@ -47,6 +53,7 @@ public class Gui extends JFrame {
 	protected void initWindow() {
 		tasks();
 		readText();
+		table();
 
 		JButton quitButton = new JButton("Beenden");
 		quitButton.addActionListener(new ActionListener() {
@@ -136,5 +143,23 @@ public class Gui extends JFrame {
 		} else {
 			textField2.setText("Eingabe ist nicht in Ordnung.");
 		}
+	}
+
+	public void table() {
+	     String columns[] = { "Termin ID", "Titel", "Datum"};   
+	     String content[][] = {
+	               { "1", "bla", "morgen"},
+	               { "2", "blu"},
+	               { "3", "blub", "nie"}
+	     };
+
+	     
+	     tableModel = new DefaultTableModel(content, columns);        
+         table = new JTable(tableModel);
+         
+         JScrollPane scrollPane = new JScrollPane(table);
+         
+         scrollPane.setBounds(15, 250, 500, 250);
+         this.getContentPane().add(scrollPane);
 	}
 }
