@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class Xml {
+public class ReadXml {
 	public void readXml() throws ParserConfigurationException {
 		File fXmlFile = new File("data.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -33,27 +33,34 @@ public class Xml {
 
 		NodeList nList = doc.getElementsByTagName("task");
 
-		for (int temp = 0; temp < nList.getLength(); temp++) {
+		for (int i = 0; i < nList.getLength(); i++) {
 
-			Node nNode = nList.item(temp);
+			Node nNode = nList.item(i);
 
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-				Element eElement = (Element) nNode;
+				Element task = (Element) nNode;
+				
+				xmlToConsole(task);	// test output
 
-				System.out.println("\nTitel:\t\t" + eElement.getElementsByTagName("title").item(0).getTextContent());
-				System.out.println("Datum:\t\t"
-						+ eElement.getElementsByTagName("day").item(0).getTextContent()
-						+ "."
-						+ eElement.getElementsByTagName("month").item(0).getTextContent()
-						+ "."
-						+ eElement.getElementsByTagName("year").item(0).getTextContent());
-				System.out.println("Uhrzeit:\t"
-						+ eElement.getElementsByTagName("hour").item(0).getTextContent()
-						+ ":"
-						+ eElement.getElementsByTagName("minute").item(0).getTextContent());
-				System.out.println("Beschreibung:\t" + eElement.getElementsByTagName("description").item(0).getTextContent());
 			}
 		}
+	}
+	
+	// test output
+	public void xmlToConsole(Element task) {
+	    System.out.println("\nTask ID:\t" + task.getAttribute("ID")); 
+		System.out.println("Titel:\t\t" + task.getElementsByTagName("title").item(0).getTextContent());
+		System.out.println("Datum:\t\t"
+				+ task.getElementsByTagName("day").item(0).getTextContent()
+				+ "."
+				+ task.getElementsByTagName("month").item(0).getTextContent()
+				+ "."
+				+ task.getElementsByTagName("year").item(0).getTextContent());
+		System.out.println("Uhrzeit:\t"
+				+ task.getElementsByTagName("hour").item(0).getTextContent()
+				+ ":"
+				+ task.getElementsByTagName("minute").item(0).getTextContent());
+		System.out.println("Beschreibung:\t" + task.getElementsByTagName("description").item(0).getTextContent());
 	}
 }
