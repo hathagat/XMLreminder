@@ -1,0 +1,32 @@
+<tasks>
+	<task>
+		<ID>1</ID>
+		<title>Präsentation XML</title>
+		<day>17</day>
+		<month>06</month>
+		<year>2014</year>
+		<hour>20</hour>
+		<minute>00</minute>
+		<description>Fortschritte im TeamSpeak präsentieren!</description>
+	</task>
+	<task>
+		<ID>2</ID>
+		<title>Lehrveranstalungsende</title>	
+		<day>11</day>
+		<month>07</month>
+		<year>2014</year>
+		<hour>12</hour>
+		<minute>00</minute>
+		<description>alles ferig ;-)</description>
+	</task>
+	<task>
+		<ID>3</ID>
+		<title>Semesterende</title>
+		<day>30</day>
+		<month>09</month>
+		<year>2014</year>
+		<hour>10</hour>
+		<minute>30</minute>
+		<description>Praktikum geht los...</description>
+	</task>
+</tasks>
