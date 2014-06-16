@@ -108,19 +108,19 @@ public class ParseXml {
 			task.setAttributeNode(attribute);
 
 			Element title = document.createElement("title");
-			title.appendChild(document.createTextNode("ich bin der Titel"));
+			title.appendChild(document.createTextNode(Gui.titleText.getText()));
 			task.appendChild(title);
 
 			Element day = document.createElement("day");
-			day.appendChild(document.createTextNode("01"));
+			day.appendChild(document.createTextNode(Gui.dateText.getText()));
 			task.appendChild(day);
 
 			Element month = document.createElement("month");
-			month.appendChild(document.createTextNode("11"));
+			month.appendChild(document.createTextNode(Gui.titleText.getText()));
 			task.appendChild(month);
 
 			Element year = document.createElement("year");
-			year.appendChild(document.createTextNode("2011"));
+			year.appendChild(document.createTextNode(Gui.titleText.getText()));
 			task.appendChild(year);
 
 			// creating and writing to XML file
