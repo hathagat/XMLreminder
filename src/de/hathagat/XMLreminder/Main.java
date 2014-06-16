@@ -12,7 +12,7 @@ public class Main {
 		window.setVisible(true);
 
 		// read XML file
-		ReadXml data = new ReadXml();
+		ParseXml data = new ParseXml();
 		try {
 			data.readXml();
 		} catch (ParserConfigurationException e) {
@@ -21,7 +21,7 @@ public class Main {
 		}
 
 		// create XML file
-		CreateXml createXml = new CreateXml();
+		ParseXml createXml = new ParseXml();
 		createXml.createXML();
 	}
 }
