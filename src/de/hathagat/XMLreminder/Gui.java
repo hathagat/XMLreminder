@@ -10,8 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -19,10 +17,24 @@ import javax.swing.table.DefaultTableModel;
 
 public class Gui extends JFrame {
 	private static final long serialVersionUID = 1470518963314635877L;
-
-	JTextField textField1;
-	JTextField textField2;
-	JButton button1;
+	
+	// Options for the JComboBox
+	String[] categoryOptions;
+	
+	JLabel taskLabel;		
+	JLabel categoryLabel;
+	JLabel titleLabel;
+	JLabel dateLabel;
+	JLabel timeLabel;
+	JLabel descriptionLabel;
+	
+	JComboBox categoryBox;
+	JTextField titleText;
+	JTextField dateText;
+	JTextField timeText;
+	JTextField descriptionText;
+	
+	JButton insertButton = new JButton("Eintragen");
 	
     static String[] titles = new String[]{ "Termin ID", "Titel", "Datum", "Uhrzeit", "Beschreibung" };	// titles for table columns
     final static DefaultTableModel model = new DefaultTableModel( titles, 0 );
@@ -51,9 +63,8 @@ public class Gui extends JFrame {
 	}
 	
 	protected void initWindow() {
-		tasks();
-		readText();
-		table();
+		setTask();
+		xmlTable();
 
 		JButton quitButton = new JButton("Beenden");
 		quitButton.addActionListener(new ActionListener() {
@@ -61,83 +72,81 @@ public class Gui extends JFrame {
 				System.exit(0);
 			}
 		});
-		quitButton.setBounds(640, 500, 110, 30);
+		quitButton.setBounds(640, 500, 100, 30);
 		this.getContentPane().add(quitButton);
 
 		this.pack();
 	}
 	
-	public void table() {
-		 JTable table = new JTable( model );          
-      JScrollPane scrollPane = new JScrollPane(table);
+	public void xmlTable() {
+		JTable table = new JTable(model);
+		JScrollPane scrollPane = new JScrollPane(table);
 
-      scrollPane.setBounds(15, 250, 600, 200);
-      
-      this.getContentPane().add(scrollPane);
+		scrollPane.setBounds(15, 250, 725, 200);
+
+		this.getContentPane().add(scrollPane);
 	}
 	
-	public void tasks() {
+	public void setTask() {
 		// Options for the JComboBox
-		String[] taskOptions = { "Allgemein", "Feier", "Geburtstag", "Meeting",
-				"Prüfung", "Urlaub" };
-
-		// Options for the JList
-		String[] days = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-				"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-				"21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-				"31" };
-
-		// The first JPanel contains a JLabel and JCombobox
-		final JPanel comboPanel = new JPanel();
-		JLabel comboLbl = new JLabel("Terminart");
-		JComboBox task = new JComboBox(taskOptions);
-
-		comboPanel.add(comboLbl);
-		comboPanel.add(task);
-
-		// Create the second JPanel. Add a JLabel and JList and
-		// make use the JPanel is not visible.
-		final JPanel listPanel = new JPanel();
-
-		JLabel listLbl = new JLabel("Tage");
-		JList dayCal = new JList(days);
-		dayCal.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-
-		listPanel.add(listLbl);
-		listPanel.add(dayCal);
-
-		comboPanel.setBounds(400, 15, 150, 60);
-		listPanel.setBounds(550, 15, 150, 200);
-
-		this.getContentPane().add(comboPanel);
-		this.getContentPane().add(listPanel);
-	}
-
-	public void readText() {
-
-		textField1 = new JTextField();
-		textField2 = new JTextField();
-
-		button1 = new JButton("Eintragen");
-		button1.addActionListener(new ActionListener() {
+		String[] categoryOptions = { "Allgemein", "Feier", "Geburtstag", "Meeting", "Prüfung", "Urlaub" };
+		
+		taskLabel = new JLabel("neuer Termin");		
+		categoryLabel = new JLabel("Kategorie");
+		titleLabel = new JLabel("Titel");
+		dateLabel = new JLabel("Datum");
+		timeLabel = new JLabel("Uhrzeit");
+		descriptionLabel = new JLabel("Beschreibung");
+		
+		categoryBox = new JComboBox(categoryOptions);
+		titleText = new JTextField();
+		dateText = new JTextField();
+		timeText = new JTextField();
+		descriptionText = new JTextField();
+		
+		insertButton = new JButton("Eintragen");
+		insertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				button1Clicked();
+				insertButtonClicked();
 			}
 		});
+		
+		taskLabel.setBounds(25, 25, 100, 20);
+		categoryLabel.setBounds(50, 50, 100, 20);
+		titleLabel.setBounds(200, 50, 100, 20);
+		dateLabel.setBounds(600, 50, 100, 20);
+		timeLabel.setBounds(600, 110, 100, 20);
+		descriptionLabel.setBounds(200, 110, 100, 20);
+	
+		categoryBox.setBounds(50, 75, 100, 20);
+		titleText.setBounds(200, 75, 350, 20);
+		dateText.setBounds(600, 75, 100, 20);
+		timeText.setBounds(600, 135, 100, 20);
+		descriptionText.setBounds(200, 135, 350, 20);
 
-		textField1.setBounds(15, 15, 200, 25);
-		textField2.setBounds(15, 85, 200, 25);
-		button1.setBounds(250, 110, 100, 30);
+		
+		insertButton.setBounds(640, 175, 100, 30);
 
-		this.getContentPane().add(textField1);
-		this.getContentPane().add(textField2);
-		this.getContentPane().add(button1);
+		this.getContentPane().add(taskLabel);
+		this.getContentPane().add(categoryLabel);
+		this.getContentPane().add(titleLabel);
+		this.getContentPane().add(dateLabel);
+		this.getContentPane().add(timeLabel);
+		this.getContentPane().add(descriptionLabel);
+		
+		this.getContentPane().add(categoryBox);
+		this.getContentPane().add(titleText);
+		this.getContentPane().add(dateText);
+		this.getContentPane().add(timeText);
+		this.getContentPane().add(descriptionText);
+		
+		this.getContentPane().add(insertButton);
 	}
 
-	public void button1Clicked() {
+	public void insertButtonClicked() {
 		double number = 0;
 		try {
-			number = Double.parseDouble(textField1.getText());
+			number = Double.parseDouble(titleText.getText());
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			number = -1;
@@ -148,9 +157,9 @@ public class Gui extends JFrame {
 			nf.setMaximumFractionDigits(2);
 			String ausgabe = nf.format(number);
 
-			textField2.setText(ausgabe);
+			dateText.setText(ausgabe);
 		} else {
-			textField2.setText("Eingabe ist nicht in Ordnung.");
+			dateText.setText("Eingabe ist nicht in Ordnung.");
 		}
 	}
 }
