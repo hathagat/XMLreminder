@@ -20,8 +20,6 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		// create XML file
-		ParseXml createXml = new ParseXml();
-		createXml.createXML();
+		data.createXML();
 	}
 }
