@@ -18,25 +18,24 @@ import javax.swing.table.DefaultTableModel;
 public class Gui extends JFrame {
 	private static final long serialVersionUID = 1470518963314635877L;
 	
-	// Options for the JComboBox
-	String[] categoryOptions;
+	private String[] categoryOptions = { "Allgemein", "Feier", "Geburtstag", "Meeting", "Prüfung", "Urlaub" };
 	
-	JLabel taskLabel;		
-	JLabel categoryLabel;
-	JLabel titleLabel;
-	JLabel dateLabel;
-	JLabel timeLabel;
-	JLabel descriptionLabel;
+	private JLabel taskLabel;		
+	private JLabel categoryLabel;
+	private JLabel titleLabel;
+	private JLabel dateLabel;
+	private JLabel timeLabel;
+	private JLabel descriptionLabel;
 	
 	JComboBox categoryBox;
-	JTextField titleText;
-	JTextField dateText;
-	JTextField timeText;
-	JTextField descriptionText;
+	static JTextField titleText;
+	static JTextField dateText;
+	static JTextField timeText;
+	static JTextField descriptionText;
 	
-	JButton insertButton = new JButton("Eintragen");
+	private JButton insertButton = new JButton("Eintragen");
 	
-    static String[] titles = new String[]{ "Termin ID", "Titel", "Datum", "Uhrzeit", "Beschreibung" };	// titles for table columns
+	private static String[] titles = new String[]{ "Termin ID", "Titel", "Datum", "Uhrzeit", "Beschreibung" };	// titles for table columns
     final static DefaultTableModel model = new DefaultTableModel( titles, 0 );
 
 	public Gui() {
@@ -78,18 +77,7 @@ public class Gui extends JFrame {
 		this.pack();
 	}
 	
-	public void xmlTable() {
-		JTable table = new JTable(model);
-		JScrollPane scrollPane = new JScrollPane(table);
-
-		scrollPane.setBounds(15, 250, 725, 200);
-
-		this.getContentPane().add(scrollPane);
-	}
-	
 	public void setTask() {
-		// Options for the JComboBox
-		String[] categoryOptions = { "Allgemein", "Feier", "Geburtstag", "Meeting", "Prüfung", "Urlaub" };
 		
 		taskLabel = new JLabel("neuer Termin");		
 		categoryLabel = new JLabel("Kategorie");
@@ -144,6 +132,9 @@ public class Gui extends JFrame {
 	}
 
 	public void insertButtonClicked() {
+		
+		categoryBox.getName();
+		
 		double number = 0;
 		try {
 			number = Double.parseDouble(titleText.getText());
@@ -162,4 +153,14 @@ public class Gui extends JFrame {
 			dateText.setText("Eingabe ist nicht in Ordnung.");
 		}
 	}
+	
+	public void xmlTable() {
+		JTable table = new JTable(model);
+		JScrollPane scrollPane = new JScrollPane(table);
+
+		scrollPane.setBounds(15, 250, 725, 200);
+
+		this.getContentPane().add(scrollPane);
+	}
+	
 }
