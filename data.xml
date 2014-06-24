@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>  
 <tasks>
 	<task ID="1">
+		<category>Prüfung</category>
 		<title>Präsentation XML</title>
 		<day>17</day>
 		<month>06</month>
@@ -10,6 +11,7 @@
 		<description>Fortschritte im TeamSpeak präsentieren!</description>
 	</task>
 	<task ID="2">
+		<category>Urlaub</category>
 		<title>Lehrveranstaltungsende</title>	
 		<day>11</day>
 		<month>07</month>
@@ -19,6 +21,7 @@
 		<description>alles ferig ;-)</description>
 	</task>
 	<task ID="3">
+		<category>Allgemein</category>
 		<title>Semesterende</title>
 		<day>30</day>
 		<month>09</month>
