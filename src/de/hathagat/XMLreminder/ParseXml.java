@@ -54,7 +54,7 @@ public class ParseXml {
 				xmlToConsole(currentTask);	// test output
 				
 				Vector xmlData = xmltoTable(currentTask);	// write nodes of current task in vector
-				Gui.model.addRow( xmlData );	// add vector to table
+				Gui.model.addRow(xmlData);	// add vector to table
 
 			}
 		}
@@ -90,7 +90,7 @@ public class ParseXml {
 		System.out.println("Beschreibung:\t" + task.getElementsByTagName("description").item(0).getTextContent());
 	}
 	
-	public void createXML() {
+	public static void createXML(int id, Object category, String title, String date, String time, String description) {
 		try {
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -106,24 +106,40 @@ public class ParseXml {
 
 			// add ID to task
 			Attr attribute = document.createAttribute("ID");
-			attribute.setValue("1");
+			attribute.setValue(String.valueOf(id));
 			task.setAttributeNode(attribute);
+			
+			Element categoryXml = document.createElement("category");
+			categoryXml.appendChild(document.createTextNode((String)category));
+			task.appendChild(categoryXml);
 
-			Element title = document.createElement("title");
-			title.appendChild(document.createTextNode(Gui.titleText.getText()));
-			task.appendChild(title);
+			Element titleXml = document.createElement("title");
+			titleXml.appendChild(document.createTextNode(title));
+			task.appendChild(titleXml);
 
 			Element day = document.createElement("day");
-			day.appendChild(document.createTextNode(Gui.dateText.getText()));
+			day.appendChild(document.createTextNode(date));		// split String!!!!
 			task.appendChild(day);
 
 			Element month = document.createElement("month");
-			month.appendChild(document.createTextNode(Gui.titleText.getText()));
+			month.appendChild(document.createTextNode(date));
 			task.appendChild(month);
 
 			Element year = document.createElement("year");
-			year.appendChild(document.createTextNode(Gui.titleText.getText()));
+			year.appendChild(document.createTextNode(date));
 			task.appendChild(year);
+			
+			Element hour = document.createElement("hour");
+			hour.appendChild(document.createTextNode(time));
+			task.appendChild(hour);
+			
+			Element minute = document.createElement("minute");
+			minute.appendChild(document.createTextNode(time));
+			task.appendChild(minute);
+			
+			Element descriptionXml = document.createElement("description");
+			descriptionXml.appendChild(document.createTextNode(description));
+			task.appendChild(descriptionXml);
 
 			// creating and writing to XML file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();

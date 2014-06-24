@@ -133,7 +133,13 @@ public class Gui extends JFrame {
 
 	public void insertButtonClicked() {
 		
-		categoryBox.getName();
+		// entered values
+		ParseXml.createXML(model.getRowCount()+1,
+				categoryBox.getSelectedItem(),
+				titleText.getText(),
+				dateText.getText(),
+				timeText.getText(),
+				descriptionText.getText());
 		
 		double number = 0;
 		try {
