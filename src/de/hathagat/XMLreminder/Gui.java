@@ -35,7 +35,7 @@ public class Gui extends JFrame {
 	
 	private JButton insertButton = new JButton("Eintragen");
 	
-	private static String[] titles = new String[]{ "Termin ID", "Titel", "Datum", "Uhrzeit", "Beschreibung" };	// titles for table columns
+	private static String[] titles = new String[]{ "Kategorie", "Titel", "Datum", "Uhrzeit", "Beschreibung" };	// titles for table columns
     final static DefaultTableModel model = new DefaultTableModel( titles, 0 );
 
 	public Gui() {

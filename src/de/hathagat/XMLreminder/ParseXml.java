@@ -23,6 +23,7 @@ import org.xml.sax.SAXException;
 
 public class ParseXml {
 	String content[][] = null;
+	
 	public void readXml() throws ParserConfigurationException {
 		File fXmlFile = new File("data.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -62,7 +63,7 @@ public class ParseXml {
     public static Vector xmltoTable(Element task) {
         Vector vector = new Vector( Gui.model.getColumnCount() );
 
-        vector.add( task.getAttribute("ID") );
+        vector.add( task.getElementsByTagName("category").item(0).getTextContent() );
         vector.add( task.getElementsByTagName("title").item(0).getTextContent() );
         vector.add( task.getElementsByTagName("day").item(0).getTextContent() + "."
 				+ task.getElementsByTagName("month").item(0).getTextContent() + "."
@@ -76,7 +77,8 @@ public class ParseXml {
 	
 	// test output
 	public void xmlToConsole(Element task) {
-	    System.out.println("\nTask ID:\t" + task.getAttribute("ID")); 
+	    System.out.println("\nTask ID:\t" + task.getAttribute("ID"));
+	    System.out.println("Kategorie:\t" + task.getElementsByTagName("category").item(0).getTextContent());
 		System.out.println("Titel:\t\t" + task.getElementsByTagName("title").item(0).getTextContent());
 		System.out.println("Datum:\t\t"
 				+ task.getElementsByTagName("day").item(0).getTextContent() + "."
