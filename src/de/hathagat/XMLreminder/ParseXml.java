@@ -12,6 +12,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.StringTokenizer;
 import java.util.Vector;
 
 import org.w3c.dom.Attr;
@@ -25,12 +26,12 @@ public class ParseXml {
 	String content[][] = null;
 	
 	public void readXml() throws ParserConfigurationException {
-		File fXmlFile = new File("data.xml");
+		File xmlFile = new File("data.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = null;
 		try {
-			doc = dBuilder.parse(fXmlFile);
+			doc = dBuilder.parse(xmlFile);
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,16 +91,43 @@ public class ParseXml {
 		System.out.println("Beschreibung:\t" + task.getElementsByTagName("description").item(0).getTextContent());
 	}
 	
-	public static void createXML(int id, Object category, String title, String date, String time, String description) {
+	public static void createXML(int id, Object category, String title, String date, String time, String description){
+		
+		String day, month, year, hour, minute;
+		
+        final StringTokenizer dateToken = new StringTokenizer(date, "./");
+        day = dateToken.nextToken();
+        month = dateToken.nextToken();
+        year = dateToken.nextToken();
+        
+        final StringTokenizer timeToken = new StringTokenizer(time, ":");
+        hour = timeToken.nextToken();
+        minute = timeToken.nextToken();
+        
+        
+		File xmlFile = new File("data.xml");
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		Document document = null;
 		try {
-			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+			dBuilder = dbFactory.newDocumentBuilder();
+			document = dBuilder.parse(xmlFile);
+		} catch (ParserConfigurationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		document.getDocumentElement().normalize();
 			
+		try {			
 			// define root element
-			Document document = documentBuilder.newDocument();
-			Element rootElement = document.createElement("tasks");
-			document.appendChild(rootElement);
-
+			Element rootElement = document.getDocumentElement();
+			
 			// define task element
 			Element task = document.createElement("task");
 			rootElement.appendChild(task);
@@ -117,43 +145,41 @@ public class ParseXml {
 			titleXml.appendChild(document.createTextNode(title));
 			task.appendChild(titleXml);
 
-			Element day = document.createElement("day");
-			day.appendChild(document.createTextNode(date));		// split String!!!!
-			task.appendChild(day);
+			Element dayXml = document.createElement("day");
+			dayXml.appendChild(document.createTextNode(day));
+			task.appendChild(dayXml);
 
-			Element month = document.createElement("month");
-			month.appendChild(document.createTextNode(date));
-			task.appendChild(month);
+			Element monthXml = document.createElement("month");
+			monthXml.appendChild(document.createTextNode(month));
+			task.appendChild(monthXml);
 
-			Element year = document.createElement("year");
-			year.appendChild(document.createTextNode(date));
-			task.appendChild(year);
+			Element yearXml = document.createElement("year");
+			yearXml.appendChild(document.createTextNode(year));
+			task.appendChild(yearXml);
 			
-			Element hour = document.createElement("hour");
-			hour.appendChild(document.createTextNode(time));
-			task.appendChild(hour);
+			Element hourXml = document.createElement("hour");
+			hourXml.appendChild(document.createTextNode(hour));
+			task.appendChild(hourXml);
 			
-			Element minute = document.createElement("minute");
-			minute.appendChild(document.createTextNode(time));
-			task.appendChild(minute);
+			Element minuteXml = document.createElement("minute");
+			minuteXml.appendChild(document.createTextNode(minute));
+			task.appendChild(minuteXml);
 			
 			Element descriptionXml = document.createElement("description");
 			descriptionXml.appendChild(document.createTextNode(description));
 			task.appendChild(descriptionXml);
 
-			// creating and writing to XML file
+			// write to XML file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");		// add newlines to output
 			DOMSource domSource = new DOMSource(document);
-			StreamResult streamResult = new StreamResult(new File("new_data.xml"));
+			StreamResult streamResult = new StreamResult(new File("data.xml"));
 
 			transformer.transform(domSource, streamResult);
-
+			
 			System.out.println("\nDatei gespeichert!");
 
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
 		} catch (TransformerException tfe) {
 			tfe.printStackTrace();
 		}

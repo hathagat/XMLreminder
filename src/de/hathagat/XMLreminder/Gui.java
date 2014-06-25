@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.text.NumberFormat;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 public class Gui extends JFrame {
 	private static final long serialVersionUID = 1470518963314635877L;
@@ -27,11 +28,11 @@ public class Gui extends JFrame {
 	private JLabel timeLabel;
 	private JLabel descriptionLabel;
 	
-	JComboBox categoryBox;
-	static JTextField titleText;
-	static JTextField dateText;
-	static JTextField timeText;
-	static JTextField descriptionText;
+	private JComboBox categoryBox;
+	private JTextField titleText;
+	private JTextField dateText;
+	private JTextField timeText;
+	private JTextField descriptionText;
 	
 	private JButton insertButton = new JButton("Eintragen");
 	
@@ -79,11 +80,11 @@ public class Gui extends JFrame {
 	
 	public void setTask() {
 		
-		taskLabel = new JLabel("neuer Termin");		
+		taskLabel = new JLabel("neuer Termin:");		
 		categoryLabel = new JLabel("Kategorie");
 		titleLabel = new JLabel("Titel");
-		dateLabel = new JLabel("Datum");
-		timeLabel = new JLabel("Uhrzeit");
+		dateLabel = new JLabel("Datum (dd.mm.yyyy)");
+		timeLabel = new JLabel("Uhrzeit (hh:mm)");
 		descriptionLabel = new JLabel("Beschreibung");
 		
 		categoryBox = new JComboBox(categoryOptions);
@@ -102,8 +103,8 @@ public class Gui extends JFrame {
 		taskLabel.setBounds(25, 25, 100, 20);
 		categoryLabel.setBounds(50, 50, 100, 20);
 		titleLabel.setBounds(200, 50, 100, 20);
-		dateLabel.setBounds(600, 50, 100, 20);
-		timeLabel.setBounds(600, 110, 100, 20);
+		dateLabel.setBounds(600, 50, 150, 20);
+		timeLabel.setBounds(600, 110, 150, 20);
 		descriptionLabel.setBounds(200, 110, 100, 20);
 	
 		categoryBox.setBounds(50, 75, 100, 20);
@@ -141,23 +142,16 @@ public class Gui extends JFrame {
 				timeText.getText(),
 				descriptionText.getText());
 		
-		double number = 0;
-		try {
-			number = Double.parseDouble(titleText.getText());
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			number = -1;
-		}
-		if (number >= 0) {
+		model.setRowCount(0);	// clear table
+		
+		ParseXml data = new ParseXml();
+			try {
+				data.readXml();		// read new table content
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-			NumberFormat nf = NumberFormat.getInstance();
-			nf.setMaximumFractionDigits(2);
-			String ausgabe = nf.format(number);
-
-			dateText.setText(ausgabe);
-		} else {
-			dateText.setText("Eingabe ist nicht in Ordnung.");
-		}
 	}
 	
 	public void xmlTable() {
