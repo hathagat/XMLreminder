@@ -28,9 +28,9 @@ Jede Spalte der Tabelle entspricht einem Element in der XML Datei. Das Root-Elem
 <tasks>
 	<task ID="1">
 		<category>		</category>
-		<title>		</title>
+		<title>			</title>
 		<day>			</day>
-		<month>		</month>
+		<month>			</month>
 		<year>			</year>
 		<hour>			</hour>
 		<minute>		</minute>
@@ -46,4 +46,4 @@ Bei der XML Datei wurde nicht nur darauf geachtet, dass sie Well-Formed ist, son
 
 
 Der XML Reminder bietet dem Nutzer komfortable Möglichkeiten zur Verwaltung von Terminen. Die Erstellung des Programms sorgte für ein tieferes Verständnis wie Daten sinnvoll gespeichert werden können, der Struktur von XML-Dateien und vom Parsen ebendieser.
-Da sämtliche zum Projekt gehörenden Daten öffentlich auf GitHub [https://github.com/hathagat/XMLreminder] zugänglich sind, wird das Team die nun gelegte Basis nutzen, um anhand des XML Reminders fachrelevante Fertigkeiten auch mit anderen Kommilitonen zu verbessern und auszubauen. Das Programm kann so kontinuierlich ausgebaut und um neue, noch zu erlernende Features ergänzt werden.
+Da sämtliche zum Projekt gehörenden Daten öffentlich auf GitHub zugänglich sind, wird das Team die nun gelegte Basis nutzen, um anhand des XML Reminders fachrelevante Fertigkeiten auch mit anderen Kommilitonen zu verbessern und auszubauen. Das Programm kann so kontinuierlich ausgebaut und um neue, noch zu erlernende Features ergänzt werden.
