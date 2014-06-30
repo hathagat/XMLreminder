@@ -49,7 +49,7 @@ Jede Spalte der Tabelle entspricht einem Element in der XML Datei. Das Root-Elem
 ```
 
 
-Das XML Reminder Programm besteht aus 3 Java-Klassen: Der Main, die lediglich der Initialisierung der Benutzeroberfläche dient, der Gui, in der das Layout und die Funktionalität der Benutzeroberfläche festgelegt sind und der ParseXml, die dazu dient sämtliche XML basierten Lese- und Schreiboperationen durchzuführen.
+Das XML Reminder Programm besteht aus 4 Java-Klassen: Der Main, die lediglich der Initialisierung der Benutzeroberfläche dient, der Gui, in der das Layout und die Funktionalität der Benutzeroberfläche festgelegt sind, der EditDialog, in der ein Dialogfenster zum editieren von Einträgen definiert ist und der ParseXml, die dazu dient sämtliche XML basierten Lese- und Schreiboperationen durchzuführen.
 
 Die Benutzeroberfläche wird durch die Java Klassenbibliotheken AWT und Swing realisiert. Swing dient hier hauptsächlich der Visualisierung einzelner Elemente wie Buttons, der Tabelle oder des Fensters selbst, während mittels AWT die Nutzerinteraktion durch verschiedene Events realisiert wird.
 
