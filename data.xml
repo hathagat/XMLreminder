@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>  
-<tasks>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tasks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="data.xsd">
 	<task ID="1">
 		<category>Prüfung</category>
 		<title>Präsentation XML</title>
@@ -12,12 +12,12 @@
 	</task>
 	<task ID="2">
 		<category>Urlaub</category>
-		<title>Lehrveranstaltungsende</title>	
+		<title>Lehrveranstaltungsende</title>
 		<day>11</day>
 		<month>07</month>
 		<year>2014</year>
 		<hour>12</hour>
-		<minute>00</minute>
+		<minute>01</minute>
 		<description>alles fertig ;-)</description>
 	</task>
 	<task ID="3">
