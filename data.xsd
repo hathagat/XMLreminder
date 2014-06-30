@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="tasks">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="task" type="taskType" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:key name="taskID">
+			 <xs:selector xpath="task" />
+			 <xs:field xpath="@ID" />
+		  </xs:key>
+	</xs:element>
+	
+	<xs:complexType name="taskType">
+		<xs:sequence>
+			<xs:element name="category" minOccurs="1" />
+			<xs:element name="title" type="xs:string" minOccurs="1" />
+			<xs:element name="day"  type="xs:positiveInteger" minOccurs="1" />
+			<xs:element name="month" type="xs:positiveInteger" minOccurs="1" />
+			<xs:element name="year" type="xs:positiveInteger" minOccurs="1" />
+			<xs:element name="hour" type="xs:nonNegativeInteger" minOccurs="1" />
+			<xs:element name="minute" type="xs:nonNegativeInteger" minOccurs="1" />
+			<xs:element name="description" type="xs:string" minOccurs="1" />
+		</xs:sequence>
+		<xs:attribute  name="ID"   type="xs:long" use="required"/>
+   </xs:complexType>
+	
+</xs:schema>
