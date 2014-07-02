@@ -1,7 +1,5 @@
 package de.hathagat.XMLreminder;
 
-import javax.xml.XMLConstants;
-import javax.xml.bind.Validator;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -12,8 +10,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
  
 import java.io.File;
 import java.io.IOException;
