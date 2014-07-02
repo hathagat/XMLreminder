@@ -45,9 +45,9 @@ import javax.xml.parsers.ParserConfigurationException;
  * @author Christoph Manske
  * @version 1.0, 29.06.2014
  */
-public class Gui extends JFrame implements ActionListener, FocusListener{
+public class Gui extends JFrame implements ActionListener, FocusListener{	
 	private static final long serialVersionUID = 1470518963314635877L;
-	
+
 	private String[] categoryOptions = { "Allgemein", "Feier", "Geburtstag", "Meeting", "Prüfung", "Urlaub" };
 	private Object[] column = new Object[5];
 	
