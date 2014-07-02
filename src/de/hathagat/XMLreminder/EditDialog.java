@@ -23,9 +23,9 @@ import javax.xml.parsers.ParserConfigurationException;
  *
  */
 public class EditDialog extends JDialog{
+	private static final long serialVersionUID = 352506412681219825L;
 
 	private JComboBox m_category;
-	private boolean m_modal;
 	private Object[] m_daten;
 	private DefaultTableModel m_model;
 	
